@@ -20,6 +20,27 @@ class StackedBarChart extends StatelessWidget {
       seriesList,
       animate: animate,
       barGroupingType: charts.BarGroupingType.stacked,
+      defaultRenderer: charts.BarRendererConfig(),
+      primaryMeasureAxis: new charts.NumericAxisSpec(
+          renderSpec: charts.GridlineRendererSpec(
+        labelOffsetFromAxisPx: 15,
+        labelStyle: new charts.TextStyleSpec(
+          fontSize: 18,
+          color: charts.Color(r: 0xDC, g: 0xDC, b: 0xDC, a: 0xFF),
+        ),
+        lineStyle: new charts.LineStyleSpec(
+          color: charts.Color(r: 0xDC, g: 0xDC, b: 0xDC, a: 0x55),
+        ),
+      )),
+      domainAxis: charts.OrdinalAxisSpec(
+        renderSpec: new charts.SmallTickRendererSpec(
+          labelOffsetFromAxisPx: 15,
+          labelStyle: new charts.TextStyleSpec(
+            fontSize: 18,
+            color: charts.Color(r: 0xDC, g: 0xDC, b: 0xDC, a: 0xFF),
+          ),
+        ),
+      ),
     );
   }
 
