@@ -14,10 +14,21 @@ class StackedBarChart extends StatelessWidget {
     );
   }
 
+  _onSelectionChanged(charts.SelectionModel model) {
+    final selectedDatum = model.selectedDatum;
+    print(selectedDatum);
+  }
+
   @override
   Widget build(BuildContext context) {
     return charts.BarChart(
       seriesList,
+      selectionModels: [
+        charts.SelectionModelConfig(
+          type: charts.SelectionModelType.info,
+          changedListener: _onSelectionChanged,
+        ),
+      ],
       animate: animate,
       defaultRenderer: charts.BarRendererConfig(
         cornerStrategy: const charts.ConstCornerStrategy(3),
