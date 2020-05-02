@@ -10,7 +10,7 @@ class StackedBarChart extends StatelessWidget {
   factory StackedBarChart.withSampleData() {
     return new StackedBarChart(
       _createSampleData(),
-      animate: false,
+      animate: true,
     );
   }
 
