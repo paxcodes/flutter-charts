@@ -19,8 +19,11 @@ class StackedBarChart extends StatelessWidget {
     return charts.BarChart(
       seriesList,
       animate: animate,
-      barGroupingType: charts.BarGroupingType.stacked,
-      defaultRenderer: charts.BarRendererConfig(),
+      defaultRenderer: charts.BarRendererConfig(
+        cornerStrategy: const charts.ConstCornerStrategy(3),
+        groupingType: charts.BarGroupingType.stacked,
+        strokeWidthPx: 2,
+      ),
       primaryMeasureAxis: new charts.NumericAxisSpec(
           renderSpec: charts.GridlineRendererSpec(
         labelOffsetFromAxisPx: 15,
@@ -68,22 +71,25 @@ class StackedBarChart extends StatelessWidget {
 
     return [
       new charts.Series<OrdinalSales, String>(
-        id: 'Desktop',
-        domainFn: (OrdinalSales sales, _) => sales.year,
-        measureFn: (OrdinalSales sales, _) => sales.sales,
-        data: desktopSalesData,
-      ),
+          id: 'Desktop',
+          domainFn: (OrdinalSales sales, _) => sales.year,
+          measureFn: (OrdinalSales sales, _) => sales.sales,
+          data: desktopSalesData,
+          colorFn: (_, __) =>
+              charts.MaterialPalette.purple.shadeDefault.lighter),
       new charts.Series<OrdinalSales, String>(
         id: 'Tablet',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: tableSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
       ),
       new charts.Series<OrdinalSales, String>(
         id: 'Mobile',
         domainFn: (OrdinalSales sales, _) => sales.year,
         measureFn: (OrdinalSales sales, _) => sales.sales,
         data: mobileSalesData,
+        colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault.darker,
       )
     ];
   }
