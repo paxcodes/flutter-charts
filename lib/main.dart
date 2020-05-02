@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testchartsapp/components/bar_graph.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,16 +32,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              '[GRAPH HERE]',
-            ),
-          ],
-        ),
-      ),
+      body: SafeArea(
+          child: Column(
+        children: <Widget>[
+          Expanded(child: StackedBarChart.withSampleData()),
+          Expanded(child: Center(child: Text("LOG entries here"))),
+        ],
+      )),
     );
   }
 }
